@@ -13,6 +13,7 @@ public class ScenarioSteps {
     MainSteps mainSteps = new MainSteps();
     CategorySteps categorySteps = new CategorySteps();
     SearchResultSteps searchResultSteps = new SearchResultSteps();
+    BasketSteps basketSteps = new BasketSteps();
 
     @When("^закрыт баннер с рекламой$")
     public void clozeBannerMethod(){
@@ -45,5 +46,24 @@ public class ScenarioSteps {
     @When("^добавлены в корзину нечетные элементы из списка$")
     public void addToBasketProduct(){
         searchResultSteps.addToBasketProduct();
+    }
+
+    @Then("^перешли в корзину$")
+    public void goToBasket(){
+        searchResultSteps.goToBasket();
+    }
+
+    @Then("^проверено, что в корзине есть добавленный товар$")
+    public void checkProduckt(){
+        basketSteps.productIsPresent();
+    }
+
+    @Then("^нажали кнопку удалить все$")
+    public void removeAllClick(){
+        basketSteps.removeAll();
+    }
+    @Then("^проверили что - \"(.+)\"$")
+    public void checkBasket(String text){
+        basketSteps.basketIsEmpty(text);
     }
 }
