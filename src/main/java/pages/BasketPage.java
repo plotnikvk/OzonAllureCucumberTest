@@ -7,6 +7,10 @@ import steps.BaseSteps;
 
 import java.util.List;
 
+/**
+ * Create by plotnikvk
+ */
+
 public class BasketPage extends BasePageObject {
 
     public BasketPage(){

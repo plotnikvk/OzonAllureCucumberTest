@@ -2,16 +2,16 @@ package steps;
 
 import io.qameta.allure.Step;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasketPage;
 
-import java.util.ArrayList;
-import java.util.List;
+/**
+ * Create by plotnikvk
+ */
+
 import java.util.concurrent.TimeUnit;
 
 public class BasketSteps {
@@ -45,6 +45,7 @@ public class BasketSteps {
             }
         }
     }
+
     @Step("проверили что корзина пуста")
     public void basketIsEmpty(String text){
         wait.until(ExpectedConditions.textToBePresentInElement(basketPage.emptyBasket,text));

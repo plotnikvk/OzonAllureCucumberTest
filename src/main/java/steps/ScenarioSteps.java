@@ -1,9 +1,7 @@
 package steps;
 
-import cucumber.api.Delimiter;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import pages.SearchResultPage;
 
 import java.util.List;
 
@@ -34,11 +32,8 @@ public class ScenarioSteps {
     }
 
     @When("^выбран бренд товара - \"(.+)\"$")
-    public void selectBrandItem(@Delimiter(",")List<String> brandItem){
-        for (String aBrandItem : brandItem) {
-            searchResultSteps.selectBrandOfItem(aBrandItem);
-        }
-    }
+    public void selectBrandItem(List<String> brandItem){
+        for (String aBrandItem : brandItem) { searchResultSteps.selectBrandOfItem(aBrandItem); } }
 
     @When("^заполнена цена от – \"(.+)\"$")
     public void isCompletedPriceFrom(String price){

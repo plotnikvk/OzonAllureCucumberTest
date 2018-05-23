@@ -7,6 +7,10 @@ import steps.BaseSteps;
 
 import java.util.List;
 
+/**
+ * Create by plotnikvk
+ */
+
 public class SearchResultPage extends BasePageObject {
 
     public SearchResultPage(){
