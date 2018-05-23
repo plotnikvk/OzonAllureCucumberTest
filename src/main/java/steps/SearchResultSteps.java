@@ -28,7 +28,7 @@ WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(), 10);
     public void isCompletedPriceFrom(String price){
         searchResultPage.fillField(searchResultPage.priceWindowFrom,price);
         searchResultPage.priceWindowFrom.sendKeys(Keys.TAB);
-        searchResultPage.applyButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(searchResultPage.applyButton)).click();
     }
 
     @Step("добавлены в корзину нечетные элементы из списка")
@@ -38,8 +38,7 @@ WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(), 10);
             if(((i+1)%2)==0){
                continue;
             }
-            BaseSteps.getDriver().findElements(By.xpath("//a[@class='eOneTile_tileLink jsUpdateLink']/ancestor:" +
-                    ":div[@class='bOneTile inline jsUpdateLink mRuble ']")).get(i).click();
+            new SearchResultPage().listOfProducts.get(i).click();
             wait.until(ExpectedConditions.elementToBeClickable(searchResultPage.buttonAddToBasket));
             searchResultPage.buttonAddToBasket.click();
             BaseSteps.getDriver().navigate().back();

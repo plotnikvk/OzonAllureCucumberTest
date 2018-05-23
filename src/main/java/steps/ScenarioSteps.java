@@ -1,8 +1,11 @@
 package steps;
 
+import cucumber.api.Delimiter;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pages.SearchResultPage;
+
+import java.util.List;
 
 /**
  * Create by plotnikvk
@@ -31,10 +34,9 @@ public class ScenarioSteps {
     }
 
     @When("^выбран бренд товара - \"(.+)\"$")
-    public void selectBrandItem(String brandItem){
-        String[] item = brandItem.split("\",\"");
-        for (int i = 0; i < item.length; i++){
-        searchResultSteps.selectBrandOfItem(item[i]);
+    public void selectBrandItem(@Delimiter(",")List<String> brandItem){
+        for (String aBrandItem : brandItem) {
+            searchResultSteps.selectBrandOfItem(aBrandItem);
         }
     }
 
@@ -62,6 +64,7 @@ public class ScenarioSteps {
     public void removeAllClick(){
         basketSteps.removeAll();
     }
+
     @Then("^проверили что - \"(.+)\"$")
     public void checkBasket(String text){
         basketSteps.basketIsEmpty(text);
