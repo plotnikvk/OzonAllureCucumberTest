@@ -1,10 +1,13 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import steps.BaseSteps;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import steps.BaseSteps;
 import java.util.List;
 
 /**
@@ -13,26 +16,31 @@ import java.util.List;
 
 public class SearchResultPage extends BasePageObject {
 
-    public SearchResultPage(){
+    public SearchResultPage() {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
+    
+    WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(), 3);
 
     public static List<String> names;
 
-    @FindBy(xpath = "//span[@class='eFilterList_OptionLink']")
+    @FindBy(xpath = "//div[@data-test-id='filter-block-brand']//span[@class='label-text']")
     public List<WebElement> brands;
 
-    @FindBy(xpath = "//div[@class='eFilterList_Title open '][contains(text(),'Бренды')]/following-sibling::div//a")
-    public List<WebElement>brands2;
+    @FindBy(xpath = "//span[@data-test-id='filter-block-brand-show-all']")
+    public WebElement openYetBrands;
 
-    @FindBy(xpath = "//input[@class='eFromToInput_InputField mFrom']")
+    @FindBy(xpath = "//div[@data-test-id='filter-block-brand']")
+    public WebElement brands2;
+
+    @FindBy(xpath = "//input[@data-test-id='range-filter-from-input']")
     public WebElement priceWindowFrom;
 
     @FindBy(xpath = "//div[@class='bFiltersHor']//div[@class='bFlatButton mMicro mWhite']")
     public WebElement applyButton;
 
     @FindBy(xpath = "//a[@class='eOneTile_tileLink jsUpdateLink']/ancestor::div[@class='bOneTile inline jsUpdateLink mRuble ']")
-    public List<WebElement>listOfProducts;
+    public List<WebElement> listOfProducts;
 
     @FindBy(xpath = "//div[@class='bSaleBlockButton jsButton']")
     public WebElement buttonAddToBasket;
@@ -40,16 +48,40 @@ public class SearchResultPage extends BasePageObject {
     @FindBy(xpath = "//div[@class='eMyOzon_Item mCart jsPanelCart mActive']/a")
     public WebElement basket;
 
-
-
     @Override
     public void selectCollectionItem(String itemName, List<WebElement> collection) {
-        for (WebElement item : collection ){
-            if (item.getText().contains(itemName)){
+        for (WebElement item : collection) {
+            if (item.getText().contains(itemName)) {
                 item.click();
                 return;
             }
         }
-         this.selectCollectionItem(itemName, brands2);
+        System.out.println("Нет Элементов");
+        openYetBrands.click();
+        System.out.println("После клика показать еще");
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("Перед заходом во второй метод");
+        selectYetCollectionItem(itemName, brands2);
+    }
+
+    public void selectYetCollectionItem (String itemName, WebElement element) {
+        System.out.println("Зашли во второй метод");
+        WebElement span = element.findElement(By.xpath("//label/span[contains(text(),'"+ itemName +"')]"));
+        WebElement checkbox = span.findElement(By.xpath("//preceding-sibling::input"));
+        checkbox.click();
+        System.out.println("Кликнули чекбокс");
+        wait.until(ExpectedConditions.elementToBeSelected(checkbox));
+        System.out.println(checkbox.isSelected());
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

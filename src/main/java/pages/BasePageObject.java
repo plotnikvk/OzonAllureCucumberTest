@@ -23,7 +23,8 @@ public class BasePageObject {
 
     public void selectCollectionItem(String itemName, List<WebElement> collection){
         for (WebElement item : collection ){
-            if (item.getText().equalsIgnoreCase(itemName)){
+            System.out.println(item.getText());
+            if (item.getText().contains(itemName)){
                 item.click();
                 return;
             }

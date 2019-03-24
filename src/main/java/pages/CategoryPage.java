@@ -6,7 +6,6 @@ import org.openqa.selenium.support.PageFactory;
 import steps.BaseSteps;
 
 import java.util.List;
-import java.util.WeakHashMap;
 
 /**
  * Create by plotnikvk
@@ -18,16 +17,17 @@ public class CategoryPage extends BasePageObject {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    @FindBy(xpath = "//a[@class='eLeftMainMenu_Title']")
+    @FindBy(xpath = "//a[@data-test-id='results-navi-level1']")
     public List<WebElement>categoryItem;
 
-    @FindBy(xpath = "//a[@class='eLeftMainMenu_Link']")
+    @FindBy(xpath = "//a[@data-test-id='results-navi-level2']")
     public List<WebElement>subCategoryItem;
 
     @Override
     public void selectCollectionItem(String itemName, List<WebElement> collection) {
         for (WebElement item : collection ){
-            if (item.getText().equalsIgnoreCase(itemName)){
+            System.out.println(item.getText());
+            if (item.getText().contains(itemName)){
                 item.click();
                 return;
             }

@@ -20,9 +20,6 @@ public class MainPage extends BasePageObject {
     @FindBy(xpath = "//div[@class='close-icon eDYbanner_close jsCloseBanner']")
     public WebElement closeBanner;
 
-    @FindBy(xpath = "//a[@class='eHeaderCategoryLinks_Link bTextLink']")
+    @FindBy(xpath = "//a[@data-test-id='header-navigation-link']")
     public List<WebElement> menuItems;
-
-
-
 }
