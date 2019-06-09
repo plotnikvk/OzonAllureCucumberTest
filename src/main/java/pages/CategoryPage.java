@@ -17,21 +17,6 @@ public class CategoryPage extends BasePageObject {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    @FindBy(xpath = "//a[@data-test-id='results-navi-level1']")
+    @FindBy(xpath = "//a[contains(@class,'category-link')]")
     public List<WebElement>categoryItem;
-
-    @FindBy(xpath = "//a[@data-test-id='results-navi-level2']")
-    public List<WebElement>subCategoryItem;
-
-    @Override
-    public void selectCollectionItem(String itemName, List<WebElement> collection) {
-        for (WebElement item : collection ){
-            System.out.println(item.getText());
-            if (item.getText().contains(itemName)){
-                item.click();
-                return;
-            }
-        }
-         super.selectCollectionItem(itemName,subCategoryItem);
-    }
 }

@@ -17,9 +17,6 @@ public class MainPage extends BasePageObject {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    @FindBy(xpath = "//div[@class='close-icon eDYbanner_close jsCloseBanner']")
-    public WebElement closeBanner;
-
-    @FindBy(xpath = "//a[@data-test-id='header-navigation-link']")
+    @FindBy(xpath = "//a[contains(@class,'link') and @data-test-id='header-navigation-link']")
     public List<WebElement> menuItems;
 }

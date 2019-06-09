@@ -33,7 +33,7 @@ public class SearchResultPage extends BasePageObject {
     @FindBy(xpath = "//div[@data-test-id='filter-block-brand']")
     public WebElement brands2;
 
-    @FindBy(xpath = "//input[@data-test-id='range-filter-from-input']")
+    @FindBy(xpath = "//div[contains(text(),'Цена')]/parent::div//input[@data-test-id='range-filter-from-input']")
     public WebElement priceWindowFrom;
 
     @FindBy(xpath = "//div[@class='bFiltersHor']//div[@class='bFlatButton mMicro mWhite']")
@@ -62,7 +62,6 @@ public class SearchResultPage extends BasePageObject {
         try {
             Thread.sleep(20000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("Перед заходом во второй метод");
@@ -80,7 +79,6 @@ public class SearchResultPage extends BasePageObject {
         try {
             Thread.sleep(20000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

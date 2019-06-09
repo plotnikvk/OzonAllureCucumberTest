@@ -16,11 +16,6 @@ public class ScenarioSteps {
     SearchResultSteps searchResultSteps = new SearchResultSteps();
     BasketSteps basketSteps = new BasketSteps();
 
-    @When("^закрыт баннер с рекламой$")
-    public void clozeBannerMethod(){
-        mainSteps.closeBannerMethod();
-    }
-
     @When("^выбран пункт меню - \"(.+)\"$")
     public void selectMenuItem(String item){
         mainSteps.selectMenuItem(item);

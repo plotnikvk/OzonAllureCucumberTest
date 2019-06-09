@@ -18,14 +18,13 @@ WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(), 10);
 
     @Step("выбран бренд товара - {brand}")
     public void selectBrandOfItem(String brand){
-     searchResultPage.selectCollectionItem(brand,searchResultPage.brands);
+      searchResultPage.selectCollectionItem(brand,searchResultPage.brands);
     }
 
     @Step("заполнена цена от – {price}")
     public void isCompletedPriceFrom(String price){
-        searchResultPage.fillField(searchResultPage.priceWindowFrom,price);
-        searchResultPage.priceWindowFrom.sendKeys(Keys.TAB);
-        wait.until(ExpectedConditions.elementToBeClickable(searchResultPage.applyButton)).click();
+      searchResultPage.fillField(searchResultPage.priceWindowFrom,price);
+      searchResultPage.priceWindowFrom.sendKeys(Keys.TAB);
     }
 
     @Step("добавлены в корзину нечетные элементы из списка")
