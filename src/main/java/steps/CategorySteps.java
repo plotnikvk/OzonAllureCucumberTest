@@ -13,6 +13,6 @@ public class CategorySteps {
 
     @Step("выбрана категория товара - {item}")
     public void selectCategoryItem(String item){
-        categoryPage.selectCollectionItem(item, categoryPage.categoryItem);
+        categoryPage.selectCategoryLink(item);
     }
 }

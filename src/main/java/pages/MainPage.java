@@ -17,6 +17,6 @@ public class MainPage extends BasePageObject {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    @FindBy(xpath = "//a[contains(@class,'link') and @data-test-id='header-navigation-link']")
+    @FindBy(xpath = "//ul//a[contains(@class,'link')]")
     public List<WebElement> menuItems;
 }

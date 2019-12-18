@@ -21,13 +21,20 @@ public class BaseSteps {
     protected static String baseUrl;
     public static Properties properties = TestProperties.getInstance().getProperties();
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return driver;
     }
 
     @Before
-    public static void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
+    public static void setUp() {
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("nux")) {
+            System.setProperty("webdriver.chrome.driver.linux", properties.getProperty("webdriver.chrome.driver.linux"));
+        } else if (os.contains("nix")) {
+            System.setProperty("webdriver.chrome.driver.linux", properties.getProperty("webdriver.chrome.driver.linux"));
+        } else if (os.contains("win")) {
+            System.setProperty("webdriver.chrome.driver.windows", properties.getProperty("webdriver.chrome.driver.windows"));
+        }
         driver = new ChromeDriver();
         baseUrl = properties.getProperty("app.url");
         System.out.println(baseUrl);
@@ -37,7 +44,7 @@ public class BaseSteps {
     }
 
     @After
-    public static void tearDown() throws Exception {
+    public static void tearDown() {
         driver.quit();
     }
 
