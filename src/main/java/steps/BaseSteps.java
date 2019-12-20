@@ -28,12 +28,10 @@ public class BaseSteps {
     @Before
     public static void setUp() {
         String os = System.getProperty("os.name").toLowerCase();
-        if (os.contains("nux")) {
-            System.setProperty("webdriver.chrome.driver.linux", properties.getProperty("webdriver.chrome.driver.linux"));
-        } else if (os.contains("nix")) {
+        if (os.contains("nux") || os.contains("nix")) {
             System.setProperty("webdriver.chrome.driver.linux", properties.getProperty("webdriver.chrome.driver.linux"));
         } else if (os.contains("win")) {
-            System.setProperty("webdriver.chrome.driver.windows", properties.getProperty("webdriver.chrome.driver.windows"));
+            System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
         }
         driver = new ChromeDriver();
         baseUrl = properties.getProperty("app.url");
@@ -49,7 +47,7 @@ public class BaseSteps {
     }
 
     @Attachment(type = "image/png", value = "Screenshot")
-    public static byte[] takeScreenshot() {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    public static void takeScreenshot() {
+        ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
