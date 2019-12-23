@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import steps.BaseSteps;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,15 +17,22 @@ public class BasePageObject {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    public void fillField(WebElement field, String value){
+    public void fillField(WebElement field, String value) {
         field.clear();
         field.sendKeys(value);
     }
 
-    public void selectCollectionItem(String itemName, List<WebElement> collection){
-        for (WebElement item : collection ){
+    public void switchToNewTab() {
+        ArrayList<String> tabs2 = new ArrayList<String>(BaseSteps.getDriver().getWindowHandles());
+        BaseSteps.getDriver().switchTo().window(tabs2.get(1));
+        BaseSteps.getDriver().close();
+        BaseSteps.getDriver().switchTo().window(tabs2.get(0));
+    }
+
+    public void selectCollectionItem(String itemName, List<WebElement> collection) {
+        for (WebElement item : collection) {
             System.out.println(item.getText());
-            if (item.getText().contains(itemName)){
+            if (item.getText().contains(itemName)) {
                 item.click();
                 return;
             }
